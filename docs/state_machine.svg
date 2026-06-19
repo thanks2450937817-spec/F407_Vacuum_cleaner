@@ -1,0 +1,47 @@
+<svg width="680" height="450" viewBox="0 0 680 450" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei, PingFang SC, Segoe UI, Helvetica, Arial, sans-serif">
+<rect x="0" y="0" width="680" height="450" rx="12" fill="#ffffff"/>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#5F5E5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+</defs>
+
+<rect x="40" y="40" width="150" height="52" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.5"/>
+<text x="115" y="62" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A">MOVE_FORWARD</text>
+<text x="115" y="80" text-anchor="middle" font-size="12" fill="#5F5E5A">测试用直行</text>
+
+<rect x="265" y="40" width="150" height="52" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="340" y="62" text-anchor="middle" font-size="14" font-weight="500" fill="#26215C">IDLE</text>
+<text x="340" y="80" text-anchor="middle" font-size="12" fill="#534AB7">空闲 · LED 闪烁</text>
+
+<rect x="490" y="40" width="150" height="52" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="565" y="62" text-anchor="middle" font-size="14" font-weight="500" fill="#04342C">BOW_CLEAN</text>
+<text x="565" y="80" text-anchor="middle" font-size="12" fill="#0F6E56">弓字形清扫</text>
+
+<text x="228" y="48" text-anchor="middle" font-size="12" fill="#5F5E5A">Advance_1m</text>
+<line x1="263" y1="58" x2="192" y2="58" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="228" y="90" text-anchor="middle" font-size="12" fill="#5F5E5A">完成 / STOP</text>
+<line x1="192" y1="74" x2="263" y2="74" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="452" y="54" text-anchor="middle" font-size="12" fill="#5F5E5A">BOW_CLEAN</text>
+<line x1="417" y1="66" x2="488" y2="66" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<path d="M565 94 L565 130 L360 130 L360 178" fill="none" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="470" y="122" text-anchor="middle" font-size="12" fill="#5F5E5A">进入子状态机</text>
+
+<rect x="240" y="180" width="200" height="56" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="340" y="202" text-anchor="middle" font-size="14" font-weight="500" fill="#04342C">FORWARD</text>
+<text x="340" y="221" text-anchor="middle" font-size="12" fill="#0F6E56">直线段 1000mm / 平移段 300mm</text>
+
+<rect x="60" y="320" width="180" height="56" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="150" y="342" text-anchor="middle" font-size="14" font-weight="500" fill="#4A1B0C">TURN_LEFT</text>
+<text x="150" y="361" text-anchor="middle" font-size="12" fill="#993C1D">原地左转 90°</text>
+
+<rect x="440" y="320" width="180" height="56" rx="8" fill="#FAECE7" stroke="#993C1D" stroke-width="0.5"/>
+<text x="530" y="342" text-anchor="middle" font-size="14" font-weight="500" fill="#4A1B0C">TURN_RIGHT</text>
+<text x="530" y="361" text-anchor="middle" font-size="12" fill="#993C1D">原地右转 90°</text>
+
+<line x1="300" y1="236" x2="185" y2="318" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+<line x1="380" y1="236" x2="495" y2="318" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M100 320 C45 268, 95 198, 240 213" fill="none" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M580 320 C635 268, 585 198, 440 213" fill="none" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<text x="340" y="412" text-anchor="middle" font-size="12" fill="#5F5E5A">转向顺序：左 → 左 → 右 → 右 循环，连成弓字形路径</text>
+</svg>

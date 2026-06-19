@@ -1,0 +1,43 @@
+<svg width="680" height="345" viewBox="0 0 680 345" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei, PingFang SC, Segoe UI, Helvetica, Arial, sans-serif">
+<rect x="0" y="0" width="680" height="345" rx="12" fill="#ffffff"/>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#5F5E5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+<marker id="arrowT" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+</defs>
+
+<rect x="40" y="90" width="110" height="52" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.5"/>
+<text x="95" y="112" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A">目标值</text>
+<text x="95" y="130" text-anchor="middle" font-size="12" fill="#5F5E5A">距离 / 脉冲</text>
+
+<rect x="195" y="90" width="125" height="52" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="257" y="112" text-anchor="middle" font-size="14" font-weight="500" fill="#26215C">位置环 PosPID</text>
+<text x="257" y="130" text-anchor="middle" font-size="12" fill="#534AB7">外环 · 位置式</text>
+
+<rect x="365" y="90" width="115" height="52" rx="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.5"/>
+<text x="422" y="112" text-anchor="middle" font-size="14" font-weight="500" fill="#26215C">速度环 ΔPID</text>
+<text x="422" y="130" text-anchor="middle" font-size="12" fill="#534AB7">内环 · 增量式</text>
+
+<rect x="525" y="90" width="110" height="52" rx="8" fill="#F1EFE8" stroke="#888780" stroke-width="0.5"/>
+<text x="580" y="112" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A">电机 + PWM</text>
+<text x="580" y="130" text-anchor="middle" font-size="12" fill="#5F5E5A">TIM3 / TIM4</text>
+
+<text x="172" y="104" text-anchor="middle" font-size="12" fill="#5F5E5A">脉冲</text>
+<line x1="150" y1="116" x2="193" y2="116" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="342" y="104" text-anchor="middle" font-size="12" fill="#5F5E5A">转速</text>
+<line x1="320" y1="116" x2="363" y2="116" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text x="502" y="104" text-anchor="middle" font-size="12" fill="#5F5E5A">占空比</text>
+<line x1="480" y1="116" x2="523" y2="116" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<rect x="300" y="235" width="180" height="52" rx="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.5"/>
+<text x="390" y="257" text-anchor="middle" font-size="14" font-weight="500" fill="#04342C">编码器</text>
+<text x="390" y="275" text-anchor="middle" font-size="12" fill="#0F6E56">TIM2 / TIM5 计数</text>
+
+<line x1="580" y1="144" x2="468" y2="233" fill="none" stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+
+<line x1="345" y1="235" x2="263" y2="144" fill="none" stroke="#0F6E56" stroke-width="1" stroke-dasharray="5 5" marker-end="url(#arrowT)"/>
+<text x="296" y="178" text-anchor="start" font-size="12" fill="#0F6E56">脉冲反馈</text>
+<line x1="425" y1="235" x2="420" y2="144" fill="none" stroke="#0F6E56" stroke-width="1" stroke-dasharray="5 5" marker-end="url(#arrowT)"/>
+<text x="436" y="186" text-anchor="start" font-size="12" fill="#0F6E56">转速反馈</text>
+
+<text x="340" y="315" text-anchor="middle" font-size="12" fill="#5F5E5A">外环输出的期望转速，正是内环的目标 —— 这就是“串级”</text>
+</svg>
