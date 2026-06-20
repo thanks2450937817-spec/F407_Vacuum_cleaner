@@ -9,7 +9,7 @@ void BOW_Idle_Enter(void) {
     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_RESET);
     last_left_encoder_cnt = 0;//将上次状态获取的编码值清0
     last_right_encoder_cnt = 0;
-    printf("BOW Current State: Idle\n");
+    //printf("BOW Current State: Idle\n");
 }
 
 void BOW_Idle_Update(void) {
@@ -22,9 +22,9 @@ void BOW_Forward_Enter(void) {
     last_right_encoder_cnt = 0;
     counter = counter % 2;
     if (counter == 0) {//第一次进入
-        pos_pid_left.target_distance = 1000;
-        pos_pid_right.target_distance = 1000;
-        printf("Current State = MOVE_FORWARD\r\n");
+        pos_pid_left.target_distance = 3000;
+        pos_pid_right.target_distance = 3000;
+        //printf("Current State = MOVE_FORWARD\r\n");
 
 
     }
@@ -48,8 +48,15 @@ void BOW_Forward_Update(void) {
     counter = counter % 4;
     //同步：取绝对值较小的那个（跟随慢侧）
     sync_target_rpm = (fabs(vL) < fabs(vR)) ? vL : vR;
-    PID_Right_Setup(sync_target_rpm);
-    PID_Left_Setup(sync_target_rpm);
+    static float ramped_rpm = 0;     // 经过斜坡平滑后的目标
+    float step = 1.0f;               // 每 10ms 最多变化 5 RPM（这个数决定加速快慢）
+
+    if (sync_target_rpm > ramped_rpm + step)      ramped_rpm += step;  // 加速：每次只升一点
+    else if (sync_target_rpm < ramped_rpm - step) ramped_rpm -= step;  // 减速：每次只降一点
+    else ramped_rpm = sync_target_rpm;            // 已接近，直接跟上
+
+    sync_target_rpm = ramped_rpm;    // 用平滑后的值喂给速度环
+    // sync_target_rpm = 300.0f;
     if (pos_pid_left.stop_flg == 1 && pos_pid_right.stop_flg == 1) {
         if (counter <= 1) {
             BOW_Change_State(BOW_STATE_TURN_LEFT);
@@ -58,6 +65,14 @@ void BOW_Forward_Update(void) {
         counter++;
     }
 }
+
+
+
+
+
+
+
+
 
 void BOW_Turn_Right_Enter(void) {
     // 重置位置环（清零积分和误差历史）
@@ -68,8 +83,8 @@ void BOW_Turn_Right_Enter(void) {
     pos_pid_left.target_pulse  = 986.0f;
     pos_pid_right.target_pulse = -986.0f;
 
-    printf("Target l Pulse = %d\r\n",(int)pos_pid_left.target_pulse);
-    printf("Target r Pulse = %d\r\n",(int)pos_pid_right.target_pulse);
+    //printf("Target l Pulse = %d\r\n",(int)pos_pid_left.target_pulse);
+    //printf("Target r Pulse = %d\r\n",(int)pos_pid_right.target_pulse);
     // HAL_Delay(1000);
 
     // 重置速度环
@@ -86,7 +101,7 @@ void BOW_Turn_Right_Enter(void) {
     l_current_duty = 10;
     r_current_duty = 10;
     PID_Base_Start();
-    printf("Current State = STATE_TURN_RIGHT\r\n");
+    //printf("Current State = STATE_TURN_RIGHT\r\n");
 }
 
 void BOW_Turn_Right_Update(void) {
@@ -107,8 +122,8 @@ void BOW_Turn_Left_Enter(void){
     pos_pid_left.target_pulse  = -986.0f;   // 左轮反转
     pos_pid_right.target_pulse =  986.0f;   // 右轮正转
 
-    printf("Target l Pulse = %d\r\n",(int)pos_pid_left.target_pulse);
-    printf("Target r Pulse = %d\r\n",(int)pos_pid_right.target_pulse);
+    //printf("Target l Pulse = %d\r\n",(int)pos_pid_left.target_pulse);
+    //printf("Target r Pulse = %d\r\n",(int)pos_pid_right.target_pulse);
     // HAL_Delay(1000);
 
     // 重置速度环
@@ -125,7 +140,7 @@ void BOW_Turn_Left_Enter(void){
     l_current_duty = 10;
     r_current_duty = 10;
     PID_Base_Start();
-    printf("Current State = STATE_TURN_LEFT\r\n");
+    //printf("Current State = STATE_TURN_LEFT\r\n");
 }
 
 void BOW_Turn_Left_Update(void) {

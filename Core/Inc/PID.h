@@ -10,9 +10,10 @@
 #define TURN_PULSE_THRESHOLD  20
 #define MIN_DUTY_FOR_RUN       5    // 能保证转动的下限占空比
 #define Turn_Need_Pluse 986  //左（右）转90°所需脉冲数
+#define SPEED_CHECK_TIME 0.001f
 //位置PID参数
 #define PKP 0.2f
-#define PKI 0.08
+#define PKI 0.0
 #define PKD 0
 #define TARGET_DISTANCE 1000.0f  //单位mm，目标行进距离
 //速度PID参数
@@ -87,7 +88,7 @@ void PID_Base_Start(void);
 
 void PID_Base_Stop(void);
 
-
+void Speed_Loop_Forward(void);
 
 
 

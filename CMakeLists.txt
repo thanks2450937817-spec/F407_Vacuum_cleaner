@@ -39,8 +39,8 @@ add_executable(${CMAKE_PROJECT_NAME}
         Core/Inc/ESP8266.h
         Core/Src/PID.c
         Core/Inc/PID.h
-        "Core/Src/State machine.c"
-        "Core/Inc/State machine.h"
+        "Core/Src/State_machine.c"
+        "Core/Inc/State_machine.h"
         Core/Inc/BOW.h
         Core/Src/BOW.c
         Core/Inc/headfile.h

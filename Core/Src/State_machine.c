@@ -2,11 +2,14 @@
 // Created by admin on 2026/6/14.
 //
 
-#include "State machine.h"
+#include "BOW.h"
+#include "headfile.h"
+#include "pid.h"
+#include "State_machine.h"
 RobotState_t Current_State = STATE_IDLE;//当前状态
 void Idle_Enter(void) {
     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_6, GPIO_PIN_RESET);
-    printf("Current State: Idle\n");
+    //printf("Current State: Idle\n");
 }
 
 void Idle_Update(void) {
@@ -22,7 +25,7 @@ void Forward_Enter(void) {
     pos_pid_left.target_distance = 1000;
     pos_pid_right.target_distance = 1000;
     PID_Base_Start();
-    printf("Current State = STATE_MOVE_FORWARD\r\n");
+    //printf("Current State = STATE_MOVE_FORWARD\r\n");
 }
 
 void Forward_Update(void) {
@@ -42,7 +45,7 @@ void Forward_Update(void) {
 ///-----------------------------------------------------------------------------------
 
 void BOW_Enter(void) {
-    printf("Current State = BOW_Enter\r\n");
+    //printf("Current State = BOW_Enter\r\n");
     BOW_Change_State(BOW_STATE_FORWARD);
 }
 
@@ -65,7 +68,18 @@ void Change_State(RobotState_t new_state) {
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
     if (htim->Instance == TIM6) {
-        state_table[Current_State].update();
+        static  uint8_t counter = 0;
+        if (Current_State == STATE_BOW_CLEAN && BOW_Current_State == BOW_STATE_FORWARD) {
+            Speed_Loop_Forward();
+        }
+        counter++;
+        if (counter >= 10) {
+            counter = 0;
+            state_table[Current_State].update();
+            printf("%d,%d,%d,%d\n", (int)sync_target_rpm, (int)l_actual_rpm, (int)r_actual_rpm);
+            // printf("%d,%d,%d\n", (int)pos_pid_left.current_pulse, (int)pos_pid_left.target_pulse, (int)pos_pid_left.error);
+            // printf("%d,%d\n", (int)pos_pid_left.output_speed, (int)pos_pid_left.error);
+        }
     }
 }
 

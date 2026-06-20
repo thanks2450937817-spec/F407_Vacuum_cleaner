@@ -59,6 +59,8 @@ extern volatile int64_t last_left_encoder_cnt;
 
 extern volatile float l_actual_rpm;
 
+extern volatile float r_actual_rpm;
+
 extern volatile uint8_t l_current_duty;
 
 extern volatile uint8_t r_current_duty;

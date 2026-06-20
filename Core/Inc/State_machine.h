@@ -6,10 +6,15 @@
 #define F407_VACUUM_CLEANER_FUNCTION_POINTER_H
 #include <stdio.h>
 
-#include "PID.h"
+
+
+
 #include "BOW.h"
 #include "headfile.h"
 
+
+
+void Change_State(RobotState_t new_state);
 
 
 

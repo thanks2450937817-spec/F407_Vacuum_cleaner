@@ -133,10 +133,10 @@ int main(void)
 
   PID_Init(&speed_pid_left,SKP, SKI, SKD, TARGET);
   PID_Init(&speed_pid_right,SKP, SKI, SKD, TARGET);
-  printf("target:%d\r\n",(int)speed_pid_left.target);
-  printf("target:%d\r\n",(int)speed_pid_right.target);
-  printf("target_pluse:%d\r\n",(int)pos_pid_left.target_pulse);
-  printf("target_pluse:%d\r\n",(int)pos_pid_right.target_pulse);
+  // printf("target:%d\r\n",(int)speed_pid_left.target);
+  // printf("target:%d\r\n",(int)speed_pid_right.target);
+  // printf("target_pluse:%d\r\n",(int)pos_pid_left.target_pulse);
+  // printf("target_pluse:%d\r\n",(int)pos_pid_right.target_pulse);
 
 
 
